@@ -36,7 +36,7 @@ body {
     background-image: url('images/фон.png');
     background-size: cover;
     background-position: center;
-    opacity: 0.8;
+    opacity: 0.9;
     z-index: -1;
     animation: floatBg 20s ease-in-out infinite;
     will-change: transform;
@@ -62,7 +62,7 @@ body {
     .parallax-bg {
         background-size: 200% auto;
         background-position: center;
-        opacity: 0.8;
+        opacity: 0.9;
         animation: none;
     }
 
@@ -75,9 +75,9 @@ body {
         height: 100%;
         background: linear-gradient(
             45deg,
-            rgba(251, 240, 160, 0.8),
-            rgba(251, 240, 160, 0.6),
-            rgba(251, 240, 160, 0.8)
+            rgba(251, 240, 160, 0.4),
+            rgba(251, 240, 160, 0.2),
+            rgba(251, 240, 160, 0.4)
         );
         animation: gradientShift 15s ease-in-out infinite;
     }
@@ -85,9 +85,9 @@ body {
     body::before {
         background: linear-gradient(
             45deg,
-            rgba(251, 240, 160, 0.95),
-            rgba(251, 240, 160, 0.85),
-            rgba(251, 240, 160, 0.95)
+            rgba(251, 240, 160, 0.6),
+            rgba(251, 240, 160, 0.4),
+            rgba(251, 240, 160, 0.6)
         );
     }
 }
