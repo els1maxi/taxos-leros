@@ -42,12 +42,18 @@ body {
     will-change: transform;
 }
 
-/* Стили для компьютера */
-@media (min-width: 769px) {
+/* Стили для больших экранов */
+@media (min-width: 1246px) and (min-height: 644px) {
     .parallax-bg {
-        background-size: cover;
-        opacity: 0.4;
         animation: floatBg 20s ease-in-out infinite;
+    }
+}
+
+/* Стили для маленьких экранов */
+@media (max-width: 1245px), (max-height: 643px) {
+    .parallax-bg {
+        animation: none;
+        transform: none;
     }
 }
 
