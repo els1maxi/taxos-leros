@@ -510,6 +510,16 @@ p {
     margin-top: 60px;
     position: relative;
     overflow: hidden;
+    background: linear-gradient(
+        45deg,
+        rgba(251, 240, 160, 0.6),
+        rgba(251, 240, 160, 0.4),
+        rgba(251, 240, 160, 0.6)
+    );
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(208, 241, 90, 0.2);
 }
 
 .footer-text {
@@ -517,8 +527,10 @@ p {
     color: #958AB6;
     font-weight: 700;
     line-height: 1.6;
-    text-shadow: 2px 2px 4px rgba(149,138,182,0.3);
+    text-shadow: 2px 2px 4px rgba(149, 138, 182, 0.3);
     animation: heartbeat 2s infinite;
+    position: relative;
+    z-index: 1;
 }
 
 @keyframes heartbeat {
@@ -542,5 +554,40 @@ p {
     }
     50% {
         transform: translateY(-5px);
+    }
+}
+
+/* Адаптивные настройки для футера */
+@media (max-width: 768px) {
+    .footer {
+        padding: 30px 15px;
+        margin-top: 40px;
+        background: linear-gradient(
+            45deg,
+            rgba(251, 240, 160, 0.7),
+            rgba(251, 240, 160, 0.5),
+            rgba(251, 240, 160, 0.7)
+        );
+    }
+
+    .footer-text {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer {
+        padding: 25px 10px;
+        margin-top: 30px;
+        background: linear-gradient(
+            45deg,
+            rgba(251, 240, 160, 0.8),
+            rgba(251, 240, 160, 0.6),
+            rgba(251, 240, 160, 0.8)
+        );
+    }
+
+    .footer-text {
+        font-size: 1.2rem;
     }
 } 
