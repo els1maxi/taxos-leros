@@ -62,7 +62,7 @@ body {
     .parallax-bg {
         background-size: 200% auto;
         background-position: center;
-        opacity: 0.2;
+        opacity: 0.8;
         animation: none;
     }
 
