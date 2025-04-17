@@ -42,50 +42,47 @@ body {
     will-change: transform;
 }
 
-/* Адаптивные настройки для разных размеров экранов */
-@media (max-width: 1200px) {
+/* Стили для компьютера */
+@media (min-width: 769px) {
     .parallax-bg {
         background-size: cover;
-        background-position: center;
+        opacity: 0.4;
+        animation: floatBg 20s ease-in-out infinite;
     }
 }
 
-@media (max-width: 992px) {
-    .parallax-bg {
-        background-size: cover;
-        background-position: center;
-    }
-}
-
+/* Стили для мобильных устройств */
 @media (max-width: 768px) {
     .parallax-bg {
-        background-size: cover;
-        background-position: center;
-        opacity: 0.35;
-    }
-}
-
-@media (max-width: 576px) {
-    .parallax-bg {
-        background-size: cover;
-        background-position: center;
-        opacity: 0.3;
-    }
-}
-
-@media (max-width: 480px) {
-    .parallax-bg {
-        background-size: cover;
-        background-position: center;
-        opacity: 0.25;
-    }
-}
-
-@media (max-width: 360px) {
-    .parallax-bg {
-        background-size: cover;
+        background-size: 200% auto;
         background-position: center;
         opacity: 0.2;
+        animation: none;
+    }
+
+    .parallax-bg::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            45deg,
+            rgba(251, 240, 160, 0.8),
+            rgba(251, 240, 160, 0.6),
+            rgba(251, 240, 160, 0.8)
+        );
+        animation: gradientShift 15s ease-in-out infinite;
+    }
+
+    body::before {
+        background: linear-gradient(
+            45deg,
+            rgba(251, 240, 160, 0.95),
+            rgba(251, 240, 160, 0.85),
+            rgba(251, 240, 160, 0.95)
+        );
     }
 }
 
@@ -104,6 +101,18 @@ body {
     }
     100% {
         transform: translate(0, 0) scale(1.05) rotate(0deg);
+    }
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
     }
 }
 
