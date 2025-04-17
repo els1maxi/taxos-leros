@@ -1,0 +1,418 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --main-bg-color: #FBF0A0;
+    --text-color: #958AB6;
+    --content-bg: rgba(255, 255, 255, 0.95);
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-color);
+    line-height: 1.8;
+    overflow-x: hidden;
+    background-color: var(--main-bg-color);
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(125deg, #FBF0A0, #f8e788, #FBF0A0, #fff5b3);
+    background-size: 300% 300%;
+    animation: gradientBG 10s ease infinite;
+    z-index: -2;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    25% {
+        background-position: 100% 50%;
+    }
+    50% {
+        background-position: 50% 100%;
+    }
+    75% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.parallax-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/фон.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    opacity: 0.4;
+    animation: floatBg 30s ease-in-out infinite;
+    background-size: 130% 130%;
+    transform-origin: center;
+    filter: blur(1px);
+}
+
+@keyframes floatBg {
+    0% {
+        background-position: 0% 0%;
+        transform: scale(1.02);
+    }
+    25% {
+        background-position: 100% 0%;
+        transform: scale(1.04) rotate(0.5deg);
+    }
+    50% {
+        background-position: 100% 100%;
+        transform: scale(1.02) rotate(-0.5deg);
+    }
+    75% {
+        background-position: 0% 100%;
+        transform: scale(1.04) rotate(0.25deg);
+    }
+    100% {
+        background-position: 0% 0%;
+        transform: scale(1.02);
+    }
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.section {
+    margin: 40px 0;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, transform;
+}
+
+.section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section:not(.visible) {
+    pointer-events: none;
+}
+
+.hero {
+    opacity: 1;
+    transform: none;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0;
+}
+
+.content {
+    background: rgba(251, 240, 160, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    position: relative;
+    border: 2px solid transparent;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
+}
+
+.content:hover {
+    border-color: #958AB6;
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(149,138,182,0.3);
+}
+
+h1, h2 {
+    font-weight: 600;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+    color: #958AB6;
+}
+
+h1::after, h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--text-color);
+    transition: var(--transition);
+}
+
+.content:hover h1::after,
+.content:hover h2::after {
+    width: 100%;
+}
+
+h1 {
+    font-size: 3.2rem;
+    font-weight: 900;
+    margin-bottom: 25px;
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(149,138,182,0.2);
+}
+
+h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    line-height: 1.2;
+    text-shadow: 1px 1px 3px rgba(149,138,182,0.2);
+}
+
+p {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 30px;
+    line-height: 1.8;
+}
+
+.content-text {
+    flex: 1;
+    min-width: 300px;
+    color: #958AB6;
+}
+
+.image-container {
+    flex: 1;
+    min-width: 300px;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 20px;
+    position: relative;
+    transition: var(--transition);
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+/* Анимация появления секций */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Чередование расположения текста и изображения */
+.section:nth-child(even) .content {
+    flex-direction: row-reverse;
+}
+
+/* Медиа-запросы */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .content {
+        flex-direction: column !important;
+        gap: 20px;
+    }
+
+    .content-text,
+    .image-container {
+        width: 100%;
+        min-width: 100%;
+    }
+
+    .image-container {
+        height: 300px;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    p {
+        font-size: 1.15rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .content {
+        padding: 25px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    .image-container {
+        height: 200px;
+    }
+
+    p {
+        font-size: 1.1rem;
+    }
+}
+
+/* Стили для салюта */
+.firework {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.spark {
+    position: absolute;
+    width: 8px;
+    height: 35px;
+    transform-origin: bottom center;
+}
+
+/* Красный салют */
+.spark.color-1 {
+    background: linear-gradient(180deg, #ff0000 20%, #ff5252 50%, transparent);
+    box-shadow: 0 0 15px #ff0000, 0 0 30px #ff0000;
+}
+
+/* Синий салют */
+.spark.color-2 {
+    background: linear-gradient(180deg, #2196f3 20%, #64b5f6 50%, transparent);
+    box-shadow: 0 0 15px #2196f3, 0 0 30px #2196f3;
+}
+
+/* Зеленый салют */
+.spark.color-3 {
+    background: linear-gradient(180deg, #4caf50 20%, #81c784 50%, transparent);
+    box-shadow: 0 0 15px #4caf50, 0 0 30px #4caf50;
+}
+
+/* Фиолетовый салют */
+.spark.color-4 {
+    background: linear-gradient(180deg, #9c27b0 20%, #ba68c8 50%, transparent);
+    box-shadow: 0 0 15px #9c27b0, 0 0 30px #9c27b0;
+}
+
+/* Золотой салют */
+.spark.color-5 {
+    background: linear-gradient(180deg, #ffd700 20%, #ffe54c 50%, transparent);
+    box-shadow: 0 0 15px #ffd700, 0 0 30px #ffd700;
+}
+
+@keyframes firework {
+    0% {
+        transform: translate(-50%, 80vh) scale(0.5);
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -100vh) scale(2);
+        opacity: 0;
+    }
+}
+
+@keyframes fireworkSparkle {
+    0% {
+        transform: scale(0) translateY(0);
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2) translateY(-100px);
+    }
+    100% {
+        transform: scale(0.8) translateY(-150px);
+        opacity: 0;
+    }
+}
+
+.footer {
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-text {
+    font-size: 1.5rem;
+    color: #958AB6;
+    font-weight: 700;
+    line-height: 1.6;
+    text-shadow: 2px 2px 4px rgba(149,138,182,0.3);
+    animation: heartbeat 2s infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Добавляем анимацию для эмодзи */
+.footer-text br + span {
+    display: inline-block;
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+} 
