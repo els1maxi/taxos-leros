@@ -23,38 +23,8 @@ body {
     line-height: 1.8;
     overflow-x: hidden;
     background-color: var(--main-bg-color);
+    min-height: 100vh;
     position: relative;
-}
-
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(125deg, #FBF0A0, #f8e788, #FBF0A0, #fff5b3);
-    background-size: 300% 300%;
-    animation: gradientBG 10s ease infinite;
-    z-index: -2;
-}
-
-@keyframes gradientBG {
-    0% {
-        background-position: 0% 50%;
-    }
-    25% {
-        background-position: 100% 50%;
-    }
-    50% {
-        background-position: 50% 100%;
-    }
-    75% {
-        background-position: 0% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
 }
 
 .parallax-bg {
@@ -66,35 +36,168 @@ body::before {
     background-image: url('images/фон.png');
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
-    z-index: -1;
     opacity: 0.4;
-    animation: floatBg 30s ease-in-out infinite;
-    background-size: 130% 130%;
-    transform-origin: center;
-    filter: blur(1px);
+    z-index: -1;
+    animation: floatBg 20s ease-in-out infinite;
+    will-change: transform;
+}
+
+/* Адаптивные настройки для разных размеров экранов */
+@media (max-width: 1200px) {
+    .parallax-bg {
+        background-size: 120% auto;
+    }
+}
+
+@media (max-width: 992px) {
+    .parallax-bg {
+        background-size: 140% auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .parallax-bg {
+        background-size: 160% auto;
+    }
+}
+
+@media (max-width: 576px) {
+    .parallax-bg {
+        background-size: 180% auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .parallax-bg {
+        background-size: 200% auto;
+    }
+}
+
+@media (max-width: 360px) {
+    .parallax-bg {
+        background-size: 220% auto;
+    }
 }
 
 @keyframes floatBg {
     0% {
-        background-position: 0% 0%;
-        transform: scale(1.02);
+        transform: translate(0, 0) scale(1.05) rotate(0deg);
     }
     25% {
-        background-position: 100% 0%;
-        transform: scale(1.04) rotate(0.5deg);
+        transform: translate(-40px, 20px) scale(1.08) rotate(1deg);
     }
     50% {
-        background-position: 100% 100%;
-        transform: scale(1.02) rotate(-0.5deg);
+        transform: translate(0, -20px) scale(1.05) rotate(-1deg);
     }
     75% {
-        background-position: 0% 100%;
-        transform: scale(1.04) rotate(0.25deg);
+        transform: translate(40px, 20px) scale(1.08) rotate(0.5deg);
     }
     100% {
-        background-position: 0% 0%;
-        transform: scale(1.02);
+        transform: translate(0, 0) scale(1.05) rotate(0deg);
+    }
+}
+
+/* Добавляем эффект параллакса при скролле */
+.parallax-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        rgba(251, 240, 160, 0.4),
+        rgba(251, 240, 160, 0.2),
+        rgba(251, 240, 160, 0.4)
+    );
+    animation: gradientShift 10s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+        opacity: 0.8;
+    }
+    50% {
+        background-position: 100% 50%;
+        opacity: 0.6;
+    }
+    100% {
+        background-position: 0% 50%;
+        opacity: 0.8;
+    }
+}
+
+/* Добавляем плавный градиент поверх фона */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        rgba(251, 240, 160, 0.8),
+        rgba(251, 240, 160, 0.6),
+        rgba(251, 240, 160, 0.8)
+    );
+    z-index: -1;
+    pointer-events: none;
+    animation: gradientPulse 8s ease-in-out infinite;
+}
+
+@keyframes gradientPulse {
+    0% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 0.8;
+    }
+}
+
+/* Адаптивные настройки для градиентов */
+@media (max-width: 768px) {
+    .parallax-bg::before {
+        background: linear-gradient(
+            45deg,
+            rgba(251, 240, 160, 0.5),
+            rgba(251, 240, 160, 0.3),
+            rgba(251, 240, 160, 0.5)
+        );
+    }
+
+    body::before {
+        background: linear-gradient(
+            45deg,
+            rgba(251, 240, 160, 0.9),
+            rgba(251, 240, 160, 0.7),
+            rgba(251, 240, 160, 0.9)
+        );
+    }
+}
+
+@media (max-width: 480px) {
+    .parallax-bg::before {
+        background: linear-gradient(
+            45deg,
+            rgba(251, 240, 160, 0.6),
+            rgba(251, 240, 160, 0.4),
+            rgba(251, 240, 160, 0.6)
+        );
+    }
+
+    body::before {
+        background: linear-gradient(
+            45deg,
+            rgba(251, 240, 160, 0.95),
+            rgba(251, 240, 160, 0.8),
+            rgba(251, 240, 160, 0.95)
+        );
     }
 }
 
